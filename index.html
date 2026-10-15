@@ -8369,6 +8369,48 @@ body{background:#F1F4FA !important}
 #page-app .greet-row{align-items:center}
 #page-app .greet-row h2{margin:0;line-height:1}
 #page-app .greet-row .desc,#page-app .greet-row .loc-dd{margin:0}
+/* ═══ Create Schedule screen ═══ */
+.fp-modal{background:#F1F4FA}
+.fp-modal.open::before{content:'';position:absolute;inset:0 0 auto 0;height:380px;pointer-events:none;background:radial-gradient(520px 260px at 10% 0%,rgba(232,146,138,.18),transparent 70%),radial-gradient(560px 280px at 55% -4%,rgba(237,184,103,.15),transparent 70%),radial-gradient(640px 300px at 95% 0%,rgba(108,159,204,.24),transparent 70%)}
+.fp-modal-inner{position:relative}
+.fp-modal-head{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px 32px;border-bottom:1px solid #E9EDF3}
+.fp-modal-title{font-family:'Bricolage Grotesque','Sora',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.025em;color:#1E2640}
+.fp-modal-sub{color:#8A92AB}
+.fp-close{border-radius:50%;border:0;background:#F1F4FA;color:#5B6482}
+.fp-close:hover{background:#EAF2FB;color:#4F86B8}
+.fp-modal-body{padding:28px 32px 0}
+#createScheduleBody > div{max-width:1180px;margin:0 auto}
+#createScheduleBody .sched-layout{border:0;border-radius:28px;padding:36px 40px 0;gap:0 48px;box-shadow:0 1px 2px rgba(30,38,64,.04),0 20px 50px rgba(79,134,184,.12);background:#fff}
+#createScheduleBody .sched-layout .card-header{margin-bottom:8px}
+#createScheduleBody #schedFormTitle{font-family:'Bricolage Grotesque','Sora',sans-serif !important;font-size:26px;font-weight:700;letter-spacing:-.03em;color:#1E2640}
+#createScheduleBody .sep{height:0;margin:0;border:0}
+#createScheduleBody .sched-form > p.fw-600{font-family:'Bricolage Grotesque','Sora',sans-serif;font-size:16px;font-weight:650;letter-spacing:-.015em;color:#1E2640;margin:36px 0 14px;padding-top:28px;border-top:1px solid #EEF2F7}
+#createScheduleBody .sched-form > .grid-2:first-child{margin-top:18px}
+#createScheduleBody .field label{font-size:12.5px;font-weight:600;color:#5B6482;margin-bottom:7px;display:block}
+#createScheduleBody .field input,#createScheduleBody .field select,#createScheduleBody .field textarea{height:48px;border:1.5px solid transparent;border-radius:14px;background:#F4F7FB;padding:0 16px;font-size:14.5px;color:#1E2640;transition:background .15s,border-color .15s,box-shadow .15s}
+#createScheduleBody .field textarea{height:96px;padding:12px 16px;line-height:1.5}
+#createScheduleBody .field input:hover,#createScheduleBody .field select:hover,#createScheduleBody .field textarea:hover{background:#EEF3F9}
+#createScheduleBody .field input:focus,#createScheduleBody .field select:focus,#createScheduleBody .field textarea:focus{background:#fff;border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18);outline:none}
+#createScheduleBody .check-row{border:1.5px solid #E3E9F1 !important;border-radius:999px !important;background:#fff;padding:10px 16px !important;font-weight:600}
+#createScheduleBody .check-row:has(input:checked){border-color:#6C9FCC !important;background:#EAF2FB !important;color:#3F739F}
+#createScheduleBody .freq-chip{padding:10px 18px;border:1.5px solid #E3E9F1;background:#fff;color:#5B6482}
+#createScheduleBody .freq-chip:hover{border-color:#6C9FCC;color:#3F739F;background:#F5F9FD}
+#createScheduleBody .freq-chip.sel{background:#6C9FCC;border-color:#6C9FCC;color:#fff;box-shadow:0 8px 18px rgba(108,159,204,.36)}
+#createScheduleBody .channel-row{gap:14px}
+#createScheduleBody .channel-btn{padding:20px 12px 16px;border:1.5px solid #E3E9F1;border-radius:20px;background:#fff;color:#5B6482;transition:border-color .15s,background .15s,box-shadow .15s,transform .15s}
+#createScheduleBody .channel-btn:hover{border-color:#6C9FCC;transform:translateY(-2px)}
+#createScheduleBody .channel-btn .ch-icon{width:44px;height:44px;margin:0 auto 10px;border-radius:14px;background:#F1F4FA;display:flex;align-items:center;justify-content:center;color:#6C9FCC;transition:.15s}
+#createScheduleBody .channel-btn.sel{background:#EAF2FB;border-color:#6C9FCC;color:#3F739F;box-shadow:0 10px 24px rgba(108,159,204,.22)}
+#createScheduleBody .channel-btn.sel .ch-icon{background:#6C9FCC;color:#fff}
+
+/* preview panel */
+#createScheduleBody .sched-aside{position:sticky;top:8px;align-self:start;margin-top:26px;border-radius:28px;padding:22px 18px 26px;background:radial-gradient(120% 70% at 0% 0%,rgba(232,146,138,.18),transparent 60%),radial-gradient(120% 70% at 100% 0%,rgba(237,184,103,.16),transparent 60%),linear-gradient(180deg,#EAF2FB,#F6F9FD)}
+#createScheduleBody .sms-prev-label{font-family:'Bricolage Grotesque','Sora',sans-serif;font-size:15px;font-weight:650;color:#1E2640}
+
+/* sticky action bar */
+#createScheduleBody .sched-foot{position:sticky;bottom:0;z-index:5;margin:36px -40px 0;padding:18px 40px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #EEF2F7;border-radius:0 0 28px 28px;justify-content:flex-end;gap:12px}
+#createScheduleBody .sched-foot .btn-primary{border-radius:999px;padding:14px 28px;font-size:15px;background:linear-gradient(180deg,#78A8D2,#6C9FCC);box-shadow:0 12px 26px rgba(108,159,204,.42)}
+@media(max-width:880px){#createScheduleBody .sched-layout{padding:24px 20px 0}#createScheduleBody .sched-foot{margin:28px -20px 0;padding:14px 20px}.fp-modal-body{padding:16px 14px 0}.fp-modal-head{padding:12px 16px}}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
