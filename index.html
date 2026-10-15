@@ -8498,6 +8498,28 @@ body{background:#F1F4FA !important}
 .rh-pg-btn.on{background:#6C9FCC;color:#fff;box-shadow:0 8px 18px rgba(108,159,204,.36)}
 .rh-pg-btn[disabled]{opacity:.35;cursor:default}
 .rh-pg-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(108,159,204,.35)}
+/* ═══ Appointments calendar ═══ */
+#sec-appointments .cal-head{margin-bottom:20px}
+#sec-appointments .cal-head .card-title,#sec-appointments .cal-head h3,#sec-appointments .cal-head [class*=title]{font-family:'Bricolage Grotesque','Sora',sans-serif !important;font-size:24px;font-weight:700;letter-spacing:-.03em;color:#1E2640}
+#sec-appointments .cal-nav{gap:6px;background:#F1F4FA;border-radius:999px;padding:4px}
+#sec-appointments .cal-nav button{height:36px;min-width:36px;border:0;border-radius:999px;background:transparent;color:#5B6482;font-weight:600}
+#sec-appointments .cal-nav button:hover{background:#fff;color:#3F739F;box-shadow:0 4px 12px rgba(79,134,184,.16)}
+#sec-appointments .cal-grid{gap:6px}
+#sec-appointments .cal-dow{text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:600;color:#8A92AB;padding:0 10px 6px}
+#sec-appointments .cal-cell{min-height:112px;border:1.5px solid transparent;border-radius:16px;padding:10px;background:#F6F9FC;box-shadow:none;transition:background .15s,box-shadow .15s,transform .15s}
+#sec-appointments .cal-cell:hover{background:#fff;box-shadow:0 10px 24px rgba(79,134,184,.14);transform:translateY(-1px)}
+#sec-appointments .cal-cell.dim{background:transparent;border:1.5px dashed #E4E9F1;box-shadow:none;transform:none}
+#sec-appointments .cal-date{font-size:13px;font-weight:600;color:#1E2640;margin-bottom:8px}
+#sec-appointments .cal-cell.dim .cal-date{color:#C4CBDA;font-weight:500}
+#sec-appointments .cal-cell.today{background:#fff;border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.16),0 14px 30px rgba(79,134,184,.18)}
+#sec-appointments .cal-chip{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;border:0 !important;border-radius:999px;padding:5px 10px;margin-bottom:5px}
+#sec-appointments .cal-chip::before{content:'';flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
+#sec-appointments .cal-chip.g{background:#EEF1F7;color:#5B6482}
+#sec-appointments .cal-chip.b{background:#EAF2FB;color:#3F739F}
+#sec-appointments .cal-chip.y{background:#FBF1DF;color:#A9791F}
+#sec-appointments .cal-chip:hover{filter:brightness(.97)}
+#sec-appointments .cal-legend{gap:18px;margin-top:20px;padding-top:16px;border-top:1px solid #EEF2F7;font-size:13px;color:#5B6482}
+#sec-appointments .cal-legend i{width:9px;height:9px;border-radius:50%}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
