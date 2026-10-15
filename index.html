@@ -5241,7 +5241,7 @@ body{padding-top:0!important}
     <div id=&quot;sec-outcomes&quot; class=&quot;section hidden&quot;>
       <div class=&quot;topbar&quot;>
         <div><h2>Outcomes Data</h2><div class=&quot;desc&quot;>De-identified population analytics · For payer &amp; government views</div></div>
-        <div class=&quot;flex&quot;><span class=&quot;tag tag-purple&quot;>🔒 Anonymized</span><button class=&quot;btn btn-secondary btn-sm&quot; onclick=&quot;exportOutcomesCSV()&quot;>Export CSV</button></div>
+        <div class=&quot;flex oc-actions&quot;><span class=&quot;oc-anon&quot;><i data-lucide='shield-check'></i>Anonymized</span><button class=&quot;btn btn-primary oc-export&quot; onclick=&quot;exportOutcomesCSV()&quot;><i data-lucide='download'></i>Export CSV</button></div>
       </div>
       <div class=&quot;stat-grid&quot;>
         <div class=&quot;stat-tile&quot;><div class=&quot;stat-label&quot;>30-Day Retention</div><div class=&quot;stat-val&quot;>74%</div><div class=&quot;stat-sub&quot;>vs 42% national avg</div></div>
@@ -8454,6 +8454,12 @@ body{background:#F1F4FA !important}
 #modalCreateSurvey .sjs-foot .btn-secondary{background:#fff;border:1.5px solid #CFE0F0;color:#3F739F}
 @media(max-width:1100px){#modalCreateSurvey .sjs-body{grid-template-columns:220px 1fr}#modalCreateSurvey .sjs-props{display:none}}
 @media(max-width:760px){#modalCreateSurvey .sjs-body{grid-template-columns:1fr}#modalCreateSurvey .sjs-toolbox{display:none}#modalCreateSurvey .sjs-tabs{padding:8px 12px;overflow-x:auto}}
+/* outcomes actions */
+#page-app .oc-actions{align-items:center;gap:12px}
+#page-app .oc-anon{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 16px;border-radius:999px;background:#fff;color:#3F739F;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1.5px #D6E6F4}
+#page-app .oc-anon svg{width:16px;height:16px;stroke-width:2;color:#6C9FCC}
+#page-app .oc-export{width:auto;height:42px;padding:0 20px;font-size:13.5px;gap:8px}
+#page-app .oc-export svg{width:16px;height:16px;stroke-width:2.2}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
