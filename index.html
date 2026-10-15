@@ -3793,7 +3793,6 @@ body{padding-top:0!important}
 
       <!-- EHR Tab -->
       <div id=&quot;tab-ehr&quot;>
-        <div class=&quot;alert alert-info&quot;><i data-lucide='lock' class=&quot;alert-ic-sm&quot;></i> All EHR connections use OAuth 2.0 / SMART on FHIR and are encrypted in transit and at rest.</div>
         <div class=&quot;connector-grid&quot;>
           <div class=&quot;connector-card connected&quot;>
             <div class=&quot;connector-icon&quot; style=&quot;background:#E0EDF8;color:#2F6DB0&quot;><i data-lucide='building-2'></i></div>
@@ -8411,6 +8410,51 @@ body{background:#F1F4FA !important}
 #createScheduleBody .sched-foot{position:sticky;bottom:0;z-index:5;margin:36px -40px 0;padding:18px 40px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #EEF2F7;border-radius:0 0 28px 28px;justify-content:flex-end;gap:12px}
 #createScheduleBody .sched-foot .btn-primary{border-radius:999px;padding:14px 28px;font-size:15px;background:linear-gradient(180deg,#78A8D2,#6C9FCC);box-shadow:0 12px 26px rgba(108,159,204,.42)}
 @media(max-width:880px){#createScheduleBody .sched-layout{padding:24px 20px 0}#createScheduleBody .sched-foot{margin:28px -20px 0;padding:14px 20px}.fp-modal-body{padding:16px 14px 0}.fp-modal-head{padding:12px 16px}}
+/* ═══ Create Survey designer ═══ */
+#modalCreateSurvey{--accent:#4F86B8;--accent-light:#EAF2FB;--accent-hover:#3F739F;--bg:#F1F4FA;--border:#E6EBF3;--text:#1E2640;--text-2:#5B6482;--text-3:#8A92AB}
+#modalCreateSurvey .sjs-creator{background:#F1F4FA}
+#modalCreateSurvey .sjs-tabs{padding:10px 32px;gap:6px;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E9EDF3}
+#modalCreateSurvey .sjs-tab{padding:9px 18px;border:0;border-radius:999px;margin:0;color:#5B6482;font-weight:600}
+#modalCreateSurvey .sjs-tab:hover{background:#EAF2FB;color:#3F739F}
+#modalCreateSurvey .sjs-tab.active{background:#6C9FCC;color:#fff;box-shadow:0 8px 18px rgba(108,159,204,.34)}
+#modalCreateSurvey .sjs-body{grid-template-columns:276px 1fr 332px;gap:0}
+#modalCreateSurvey .sjs-toolbox,#modalCreateSurvey .sjs-props{background:#fff;border:0;padding:18px 16px}
+#modalCreateSurvey .sjs-toolbox{box-shadow:1px 0 0 #E9EDF3}
+#modalCreateSurvey .sjs-props{box-shadow:-1px 0 0 #E9EDF3}
+#modalCreateSurvey .sjs-tb-search input,#modalCreateSurvey .sjs-prop-search input{height:42px;border:1.5px solid transparent;border-radius:999px;background:#F1F4FA;padding-left:38px}
+#modalCreateSurvey .sjs-tb-search input:focus,#modalCreateSurvey .sjs-prop-search input:focus{background:#fff;border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18)}
+#modalCreateSurvey .sjs-tb-label,#modalCreateSurvey .sjs-prop-sec{text-transform:none;letter-spacing:0;font-size:13px;font-weight:650;color:#1E2640;font-family:'Bricolage Grotesque','Sora',sans-serif;margin:18px 3px 8px}
+#modalCreateSurvey .sjs-prop-sec{border-bottom:0;padding-bottom:0}
+#modalCreateSurvey .sjs-tb-item{border:1.5px solid transparent;background:#F6F9FC;border-radius:16px;padding:10px 12px}
+#modalCreateSurvey .sjs-tb-item:hover{background:#fff;border-color:#6C9FCC;box-shadow:0 8px 20px rgba(108,159,204,.20)}
+#modalCreateSurvey .sjs-tb-ic{background:#fff;color:#6C9FCC;border-radius:12px;box-shadow:0 1px 2px rgba(30,38,64,.06)}
+#modalCreateSurvey .sjs-tb-item:hover .sjs-tb-ic{background:#6C9FCC;color:#fff}
+#modalCreateSurvey .sjs-surface{padding:32px 28px 80px}
+#modalCreateSurvey .sjs-page{max-width:760px;gap:16px}
+#modalCreateSurvey .sjs-survey-head{border:0;border-radius:24px;padding:26px 30px 24px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(30,38,64,.04),0 18px 44px rgba(79,134,184,.12)}
+#modalCreateSurvey .sjs-survey-head::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#E8928A 0 33%,#EDB867 33% 66%,#6C9FCC 66%)}
+#modalCreateSurvey .sjs-h-title{font-family:'Bricolage Grotesque','Sora',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.03em}
+#modalCreateSurvey .sjs-h-title::placeholder{color:#B4BBCD}
+#modalCreateSurvey .sjs-h-desc{font-size:14.5px}
+#modalCreateSurvey .add-q-bar{border:2px dashed #C9DAEA;border-radius:20px;background:rgba(255,255,255,.6);padding:20px;transition:.18s}
+#modalCreateSurvey .add-q-bar:hover{border-color:#6C9FCC;background:#fff;box-shadow:0 12px 28px rgba(108,159,204,.18);transform:translateY(-1px)}
+#modalCreateSurvey .sjs-page:not(:has(.qcard))::after{content:'Drag a question type from the left, or click Add Question to start.';text-align:center;font-size:13px;color:#8A92AB;padding:4px 0}
+#modalCreateSurvey .qcard{border:1.5px solid transparent;border-radius:22px;padding:20px 22px;box-shadow:0 1px 2px rgba(30,38,64,.04),0 12px 30px rgba(79,134,184,.09)}
+#modalCreateSurvey .qcard:hover{border-color:#CFE0F0}
+#modalCreateSurvey .qcard.sjs-sel{border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18),0 16px 36px rgba(79,134,184,.14)}
+#modalCreateSurvey .qcard-num{background:#6C9FCC;box-shadow:none}
+#modalCreateSurvey .qcard-type-badge{text-transform:none;letter-spacing:0;font-size:11.5px}
+#modalCreateSurvey .sjs-field input[type=text],#modalCreateSurvey .sjs-field select,#modalCreateSurvey .sjs-field textarea{background:#F4F7FB;border:1.5px solid transparent;border-radius:12px;padding:10px 12px}
+#modalCreateSurvey .sjs-field input[type=text]:focus,#modalCreateSurvey .sjs-field select:focus,#modalCreateSurvey .sjs-field textarea:focus{background:#fff;border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18)}
+#modalCreateSurvey .sjs-sw input:checked + span{background:#6C9FCC}
+#modalCreateSurvey .sjs-chk input{accent-color:#6C9FCC}
+#modalCreateSurvey .sjs-foot{padding:14px 32px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #E9EDF3}
+#modalCreateSurvey .sjs-foot-info{background:#F1F4FA;border-radius:999px;padding:7px 14px;font-weight:600;color:#5B6482}
+#modalCreateSurvey .sjs-foot .btn{border-radius:999px;padding:12px 24px}
+#modalCreateSurvey .sjs-foot .btn-primary{background:linear-gradient(180deg,#78A8D2,#6C9FCC);box-shadow:0 12px 26px rgba(108,159,204,.42)}
+#modalCreateSurvey .sjs-foot .btn-secondary{background:#fff;border:1.5px solid #CFE0F0;color:#3F739F}
+@media(max-width:1100px){#modalCreateSurvey .sjs-body{grid-template-columns:220px 1fr}#modalCreateSurvey .sjs-props{display:none}}
+@media(max-width:760px){#modalCreateSurvey .sjs-body{grid-template-columns:1fr}#modalCreateSurvey .sjs-toolbox{display:none}#modalCreateSurvey .sjs-tabs{padding:8px 12px;overflow-x:auto}}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
