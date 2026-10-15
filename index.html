@@ -4265,7 +4265,7 @@ body{padding-top:0!important}
     <div id=&quot;sec-users&quot; class=&quot;section hidden&quot;>
       <div class=&quot;topbar&quot;>
         <div><h2>User Management</h2><div class=&quot;desc&quot;>Define roles, permissions, and access levels</div></div>
-        <button class=&quot;btn btn-primary&quot; style=&quot;padding:12px 26px;font-size:14px&quot; onclick=&quot;openModal('modalAddUser')&quot;>+ Invite User</button>
+        <button class=&quot;btn btn-primary&quot; style=&quot;padding:12px 26px;font-size:14px&quot; onclick=&quot;openInviteUser()&quot;>+ Invite User</button>
       </div>
 
       <div class=&quot;tabs&quot; id=&quot;userTabs&quot;>
@@ -4635,7 +4635,13 @@ body{padding-top:0!important}
   function smDeleteSurvey(btn){var card=btn.closest('.survey-list-card');if(!card)return;var nmEl=card.querySelector('.survey-list-name');var nm=nmEl?nmEl.textContent.trim():'this survey';var doDel=function(){card.style.transition='opacity .18s ease,transform .18s ease';card.style.opacity='0';card.style.transform='translateY(-6px)';setTimeout(function(){if(card.parentNode)card.parentNode.removeChild(card);},180);if(window.toast)toast('“'+nm+'” deleted','ok');};if(window.askConfirm){askConfirm('Delete survey?','This will permanently remove “'+nm+'” and all its questions. This action cannot be undone.',doDel,true,'Delete');}else{doDel();}}
   function userDelete(btn){var tr=btn.closest('tr');if(!tr)return;var nmEl=tr.querySelector('.fw-600');var nm=nmEl?nmEl.textContent.trim():'this user';var go=function(){tr.style.transition='opacity .18s';tr.style.opacity='0';setTimeout(function(){if(tr.parentNode)tr.parentNode.removeChild(tr);var c=document.getElementById('userCount');if(c)c.textContent=document.querySelectorAll('#userTableBody tr').length;},180);if(window.toast)toast('“'+nm+'” removed','ok');};if(window.askConfirm)askConfirm('Remove user?','This will permanently remove “'+nm+'” from the organization and revoke their access. This cannot be undone.',go,true,'Remove user');else go();}
   function scheduleDelete(btn){var tr=btn.closest('tr');if(!tr)return;var nmEl=tr.querySelector('.fw-600');var nm=nmEl?nmEl.textContent.trim():'this schedule';var go=function(){tr.style.transition='opacity .18s';tr.style.opacity='0';setTimeout(function(){if(tr.parentNode)tr.parentNode.removeChild(tr);var c=document.getElementById('schedCount');if(c)c.textContent=document.querySelectorAll('#surveyScheduleBody tr').length;},180);if(window.toast)toast('“'+nm+'” schedule deleted','ok');};if(window.askConfirm)askConfirm('Delete schedule?','This will stop and permanently delete the “'+nm+'” survey schedule. Patients will no longer receive it. This cannot be undone.',go,true,'Delete');else go();}
-  function rhDeleteEnhance(){try{var sets=[['#userTableBody tr',userDelete],['#surveyScheduleBody tr',scheduleDelete]];for(var s=0;s<sets.length;s++){var rows=document.querySelectorAll(sets[s][0]);var fn=sets[s][1];for(var i=0;i<rows.length;i++){var tr=rows[i];if(tr.getAttribute('data-del'))continue;tr.setAttribute('data-del','1');var cell=tr.lastElementChild;if(!cell)continue;var holder=cell.querySelector('.flex')||cell;var b=document.createElement('button');b.className='btn btn-ghost btn-sm row-del';b.innerHTML='<i data-lucide=&quot;trash-2&quot;></i>Delete';b.addEventListener('click',(function(f){return function(){f(this);};})(fn));holder.appendChild(b);}}if(window.lucide)lucide.createIcons();}catch(e){}}
+  function rhDeleteEnhance(){try{var sets=[['#userTableBody tr',userDelete,true],['#surveyScheduleBody tr',scheduleDelete,false]];for(var s=0;s<sets.length;s++){var rows=document.querySelectorAll(sets[s][0]);var fn=sets[s][1];var isUser=sets[s][2];for(var i=0;i<rows.length;i++){var tr=rows[i];if(tr.getAttribute('data-del'))continue;tr.setAttribute('data-del','1');var cell=tr.lastElementChild;if(!cell)continue;var holder=cell.querySelector('.flex')||cell;if(isUser){var bs=holder.querySelectorAll('button');for(var k=0;k<bs.length;k++){var t=bs[k].textContent.trim();if(t==='Edit')bs[k].addEventListener('click',function(){userEdit(this);});else if(t==='Deactivate'||t==='Activate')bs[k].addEventListener('click',function(){userToggleActive(this);});}}var b=document.createElement('button');b.className='btn btn-ghost btn-sm row-del';b.innerHTML='<i data-lucide=&quot;trash-2&quot;></i>Delete';b.addEventListener('click',(function(f){return function(){f(this);};})(fn));holder.appendChild(b);}}if(window.lucide)lucide.createIcons();}catch(e){}}
+  var _editUserRow=null;
+  function openInviteUser(){_editUserRow=null;['invName','invEmail','invOrg','invPhone'].forEach(function(id){var e=document.getElementById(id);if(e)e.value='';});var r=document.getElementById('invRole');if(r)r.selectedIndex=0;var t=document.getElementById('invModalTitle');if(t)t.textContent='Invite New User';var sb=document.getElementById('invSubmitBtn');if(sb)sb.textContent='Send Invite';if(window.openModal)openModal('modalAddUser');if(window.lucide)lucide.createIcons();}
+  function userEdit(btn){var tr=btn.closest('tr');if(!tr)return;_editUserRow=tr;var name=(tr.querySelector('.fw-600')||{}).textContent||'';var email=(tr.querySelector('.text-xs')||{}).textContent||'';var roleTag=tr.children[1]?tr.children[1].textContent.trim():'';var org=tr.children[2]?tr.children[2].textContent.trim():'';var nameI=document.getElementById('invName');if(nameI)nameI.value=name;var emailI=document.getElementById('invEmail');if(emailI)emailI.value=email;var roleS=document.getElementById('invRole');if(roleS){for(var i=0;i<roleS.options.length;i++){if(roleS.options[i].text===roleTag){roleS.selectedIndex=i;break;}}}var orgI=document.getElementById('invOrg');if(orgI)orgI.value=org;var t=document.getElementById('invModalTitle');if(t)t.textContent='Edit User';var sb=document.getElementById('invSubmitBtn');if(sb)sb.textContent='Save changes';if(window.openModal)openModal('modalAddUser');if(window.lucide)lucide.createIcons();}
+  function userModalSubmit(){if(_editUserRow)saveUserEdit();else if(window.sendUserInvite)sendUserInvite();}
+  function saveUserEdit(){var tr=_editUserRow;if(!tr){if(window.closeModal)closeModal('modalAddUser');return;}var name=(document.getElementById('invName')||{}).value||'';var email=(document.getElementById('invEmail')||{}).value||'';var role=(document.getElementById('invRole')||{}).value||'';var org=(document.getElementById('invOrg')||{}).value||'';var nmEl=tr.querySelector('.fw-600');if(nmEl)nmEl.textContent=name;var emEl=tr.querySelector('.text-xs');if(emEl)emEl.textContent=email;if(tr.children[1]){var tag=tr.children[1].querySelector('.tag');if(tag)tag.textContent=role;}if(tr.children[2])tr.children[2].textContent=org;tr.setAttribute('data-role',role);_editUserRow=null;if(window.closeModal)closeModal('modalAddUser');if(window.toast)toast('User updated','ok');}
+  function userToggleActive(btn){var tr=btn.closest('tr');if(!tr)return;var tag=tr.children[4]?tr.children[4].querySelector('.tag'):null;if(!tag)return;if(/Active/i.test(tag.textContent)){tag.textContent='Inactive';tag.className='tag tag-gray';btn.textContent='Activate';if(window.toast)toast('User deactivated','info');}else{tag.textContent='Active';tag.className='tag tag-green';btn.textContent='Deactivate';if(window.toast)toast('User activated','ok');}}
   var APPT_AVA_C=[['#EAF2FB','#3E6DA0'],['#E7F0EA','#3C6249'],['#F3EEF9','#6A5CB0'],['#FBF1E2','#9A7C28'],['#F7E9E6','#B9543F']];
   function apptEnhanceRows(){try{var ts=document.querySelectorAll('#tab-appt-upcoming table, #tab-appt-past table');for(var t=0;t<ts.length;t++){var rows=ts[t].querySelectorAll('tbody tr');for(var r=0;r<rows.length;r++){var td=rows[r].querySelector('td.fw-600');if(!td||td.getAttribute('data-enh'))continue;td.setAttribute('data-enh','1');var name=td.textContent.trim();var parts=name.replace(/[^A-Za-z .]/g,'').split(/\s+/);var init=((parts[0]||'')[0]||'')+((parts[parts.length-1]||'')[0]||'');init=init.toUpperCase();var c=APPT_AVA_C[(name.charCodeAt(0)+name.length)%APPT_AVA_C.length];td.classList.add('appt-pt-cell');td.innerHTML='<span class=&quot;appt-ava&quot; style=&quot;background:'+c[0]+';color:'+c[1]+'&quot;>'+init+'</span><span class=&quot;appt-pt-name&quot;>'+name+'</span>';}}}catch(e){}}
   function apptType(el){var row=el.parentNode;row.querySelectorAll('.channel-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
@@ -5653,12 +5659,12 @@ body{padding-top:0!important}
 
 <div class=&quot;modal-overlay&quot; id=&quot;modalAddUser&quot; onclick=&quot;closeModal('modalAddUser')&quot;>
   <div class=&quot;modal&quot; onclick=&quot;event.stopPropagation()&quot;>
-    <div class=&quot;modal-title&quot;>Invite New User</div>
+    <div class=&quot;modal-title&quot; id=&quot;invModalTitle&quot;>Invite New User</div>
     <div class=&quot;field&quot;><label>Full name</label><input type=&quot;text&quot; id=&quot;invName&quot; placeholder=&quot;Dr. Jane Smith&quot;></div>
     <div class=&quot;field&quot;><label>Work email</label><input type=&quot;email&quot; id=&quot;invEmail&quot; placeholder=&quot;jane@clinic.com&quot;></div>
-    <div class=&quot;field&quot;><label>Phone number</label><input type=&quot;tel&quot; placeholder=&quot;+1 (555) 000-0000&quot;></div>
-    <div class=&quot;field&quot;><label>Role</label><select><option>Doctor</option><option>Clinician</option><option>Care Coordinator</option><option>Payer</option><option>Government</option><option>Admin</option></select></div>
-    <div class=&quot;field&quot;><label>Organization</label><input type=&quot;text&quot; placeholder=&quot;Organization name&quot;></div>
+    <div class=&quot;field&quot;><label>Phone number</label><input type=&quot;tel&quot; id=&quot;invPhone&quot; placeholder=&quot;+1 (555) 000-0000&quot;></div>
+    <div class=&quot;field&quot;><label>Role</label><select id=&quot;invRole&quot;><option>Doctor</option><option>Clinician</option><option>Care Coordinator</option><option>Payer</option><option>Government</option><option>Admin</option></select></div>
+    <div class=&quot;field&quot;><label>Organization</label><input type=&quot;text&quot; id=&quot;invOrg&quot; placeholder=&quot;Organization name&quot;></div>
     <div class=&quot;sep&quot;></div>
     <label class=&quot;check-row&quot; style=&quot;font-size:13px;&quot;>
       <input type=&quot;checkbox&quot; checked style=&quot;accent-color:var(--accent);width:15px;height:15px;&quot;>
@@ -5667,7 +5673,7 @@ body{padding-top:0!important}
     <div class=&quot;text-xs&quot; style=&quot;color:var(--text-3);margin:6px 0 0 23px;&quot;>A verification code will be sent to their phone number at each login.</div>
     <div class=&quot;modal-footer&quot;>
       <button class=&quot;btn btn-secondary&quot; onclick=&quot;closeModal('modalAddUser')&quot;>Cancel</button>
-      <button class=&quot;btn btn-primary&quot; onclick=&quot;sendUserInvite()&quot;>Send Invite</button>
+      <button class=&quot;btn btn-primary&quot; id=&quot;invSubmitBtn&quot; onclick=&quot;userModalSubmit()&quot;>Send Invite</button>
     </div>
   </div>
 </div>
@@ -6380,6 +6386,7 @@ function closeMobSidebar(){var s=document.querySelector('.sidebar'),o=document.g
         <div class=&quot;dhr-id&quot;><div class=&quot;dhr-name&quot;>J. Davis</div><div class=&quot;dhr-sub&quot;>34 yrs · OUD + AUD · Suboxone 16mg</div></div>
         <div class=&quot;dhr-score&quot;><b>12</b><span>/100 score</span></div>
       </div>
+      <div class=&quot;dhr-bar&quot;><div class=&quot;dhr-bar-track&quot;><i style=&quot;width:12%&quot;></i></div><div class=&quot;dhr-bar-lbl&quot;><span>Recovery score</span><span class=&quot;dhr-crit&quot;>Critical · needs outreach</span></div></div>
       <div class=&quot;dhr-meta&quot;>
         <span><i data-lucide='trending-down'></i> 82% relapse risk · trending down this week</span>
         <span><i data-lucide='target'></i> Craving check-in overdue</span>
@@ -8114,6 +8121,14 @@ body:not(.rh-authed) #mobMenuBtn,body:not(.rh-authed) #mobOverlay{display:none!i
 .survey-list-actions .sm-del:hover{color:#C0413F!important;background:#FBECE9!important;border-color:#F2D5D1!important}
 .row-del svg{width:14px;height:14px}
 .row-del:hover{color:#C0413F!important;background:#FBECE9!important}
+/* High-risk modal card polish */
+#modalDailyHighRisk .dhr-card{background:#fff;border:1px solid #EEE1DF;box-shadow:0 8px 24px rgba(192,65,63,.07),inset 3px 0 0 #D4736A;border-radius:16px;padding:18px 18px 18px 20px}
+#modalDailyHighRisk .dhr-bar{margin-top:15px}
+#modalDailyHighRisk .dhr-bar-track{height:7px;border-radius:99px;background:#F0E3E1;overflow:hidden}
+#modalDailyHighRisk .dhr-bar-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#C0413F,#E08B6A)}
+#modalDailyHighRisk .dhr-bar-lbl{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;font-weight:600;color:#9A918E}
+#modalDailyHighRisk .dhr-crit{color:#C0413F}
+#modalDailyHighRisk .dhr-meta{margin-top:16px;padding-top:15px}
 /* Appointments listing polish */
 .appt-pt-cell{display:flex!important;align-items:center;gap:11px;min-width:0}
 .appt-ava{width:34px;height:34px;border-radius:50%;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:Sora,Inter,sans-serif}
@@ -8164,14 +8179,31 @@ body:not(.rh-authed) #mobMenuBtn,body:not(.rh-authed) #mobOverlay{display:none!i
 .aud-discharge-cond #dischWindow{border:1.5px solid var(--border);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:600;font-family:inherit;color:var(--text);background:#fff;cursor:pointer}
 /* Airy style pass: lighter borders, bigger radius, softer lift + bold display headings */
 #page-app .card{border-radius:20px;border:1px solid #ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.035),0 12px 30px rgba(30,41,59,.05)}
-#page-app .topbar h2{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.08}
-#page-app .topbar .desc{margin-top:5px}
-@media(max-width:600px){#page-app .topbar h2{font-size:23px}}
+#page-app .topbar h2{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+#page-app .topbar .desc{margin-top:4px}
+@media(max-width:600px){#page-app .topbar h2{font-size:21px}}
 #page-app .stat-tile{border-radius:20px;border-color:#ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.04),0 10px 26px rgba(30,41,59,.05);transition:transform .16s ease,box-shadow .16s ease}
 #page-app .stat-tile:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(30,41,59,.04),0 16px 34px rgba(30,41,59,.08)}
 #page-app .appt-kpi{border-color:#ECEEF2}
 #page-app .survey-list-card{border-radius:16px;border-color:#ECEEF2;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
 #page-app .survey-list-card:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(30,41,59,.07);border-color:#DCE3EC}
+/* Craft layer: scrollbars, motion, focus, press feedback */
+#page-app ::-webkit-scrollbar{width:11px;height:11px}
+#page-app ::-webkit-scrollbar-thumb{background:#D3D8DE;border-radius:20px;border:3px solid transparent;background-clip:padding-box}
+#page-app ::-webkit-scrollbar-thumb:hover{background:#B6BDC6;background-clip:padding-box}
+#page-app ::-webkit-scrollbar-track{background:transparent}
+#page-app *{scrollbar-color:#D3D8DE transparent}
+#page-app .btn{transition:transform .12s cubic-bezier(.2,.8,.2,1),box-shadow .16s ease,background .14s ease,filter .14s ease,color .14s ease}
+#page-app .btn:active{transform:translateY(1px) scale(.992)}
+#page-app input:focus-visible,#page-app select:focus-visible,#page-app textarea:focus-visible{outline:none;border-color:#6C9FCC;box-shadow:0 0 0 3px rgba(108,159,204,.22)}
+#page-app .btn:focus-visible,#page-app .nav-item:focus-visible,#page-app .tab:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(108,159,204,.32)}
+#page-app .nav-item{transition:background .16s ease,color .16s ease,transform .12s ease}
+#page-app .tab{transition:background .16s ease,color .16s ease,box-shadow .16s ease}
+@media(prefers-reduced-motion:no-preference){
+  #page-app .section:not(.hidden){animation:rhSectionIn .36s cubic-bezier(.2,.8,.2,1)}
+  @keyframes rhSectionIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+  #page-app .stat-tile,#page-app .appt-kpi,#page-app .survey-list-card,#page-app .qcard{will-change:transform}
+}
 .sched-layout{display:grid;grid-template-columns:minmax(0,1fr) 304px;gap:28px;align-items:start}
 .sched-layout .card-header{grid-column:1/-1}
 .sched-form{min-width:0}
