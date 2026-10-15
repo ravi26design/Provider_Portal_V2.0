@@ -8162,9 +8162,12 @@ body:not(.rh-authed) #mobMenuBtn,body:not(.rh-authed) #mobOverlay{display:none!i
 .aud-discharge-cond{display:none}
 .aud-pills:has(#audDischarge:checked)+.aud-discharge-cond{display:block}
 .aud-discharge-cond #dischWindow{border:1.5px solid var(--border);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:600;font-family:inherit;color:var(--text);background:#fff;cursor:pointer}
-/* Airy style pass (Cryptobase-inspired): lighter borders, bigger radius, softer lift */
-#page-app .card{border-radius:18px;border:1px solid #ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.035),0 12px 30px rgba(30,41,59,.05)}
-#page-app .stat-tile{border-radius:18px;border-color:#ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.04),0 10px 26px rgba(30,41,59,.05);transition:transform .16s ease,box-shadow .16s ease}
+/* Airy style pass: lighter borders, bigger radius, softer lift + bold display headings */
+#page-app .card{border-radius:20px;border:1px solid #ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.035),0 12px 30px rgba(30,41,59,.05)}
+#page-app .topbar h2{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.08}
+#page-app .topbar .desc{margin-top:5px}
+@media(max-width:600px){#page-app .topbar h2{font-size:23px}}
+#page-app .stat-tile{border-radius:20px;border-color:#ECEEF2;box-shadow:0 1px 2px rgba(30,41,59,.04),0 10px 26px rgba(30,41,59,.05);transition:transform .16s ease,box-shadow .16s ease}
 #page-app .stat-tile:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(30,41,59,.04),0 16px 34px rgba(30,41,59,.08)}
 #page-app .appt-kpi{border-color:#ECEEF2}
 #page-app .survey-list-card{border-radius:16px;border-color:#ECEEF2;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
