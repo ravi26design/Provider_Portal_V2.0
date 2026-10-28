@@ -8533,6 +8533,18 @@ body{background:#F1F4FA !important}
 #modalCreateSurvey .qcard{border:1.5px solid transparent;border-radius:20px;box-shadow:0 2px 14px rgba(58,51,48,.07)}
 #modalCreateSurvey .qcard.sjs-sel{border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18),0 4px 22px rgba(58,51,48,.10)}
 #createScheduleBody .sched-foot{border-radius:0 0 24px 24px}
+/* ═══ KPI cards: gradient style (engagement + appointments summaries) ═══ */
+#page-app .appt-kpi{border:0;border-radius:24px;padding:22px 24px 20px;color:#fff;min-height:132px;background:linear-gradient(135deg,#5B8EC5,#7FA8DA);box-shadow:0 12px 28px rgba(91,142,197,.28)}
+#page-app .appt-kpi:nth-child(1){background:linear-gradient(135deg,#5B8EC5,#7FA8DA)}
+#page-app .appt-kpi:nth-child(2){background:linear-gradient(135deg,#6EA0CE,#9CC0E1);box-shadow:0 12px 28px rgba(110,160,206,.28)}
+#page-app .appt-kpi:nth-child(3){background:linear-gradient(135deg,#5599D0,#7FB2DF);box-shadow:0 12px 28px rgba(85,153,208,.28)}
+#page-app .appt-kpi:nth-child(4){background:linear-gradient(135deg,#8B7FD3,#B2A7E8);box-shadow:0 12px 28px rgba(139,127,211,.30)}
+#page-app .appt-kpi:hover{border:0;box-shadow:0 16px 34px rgba(91,142,197,.36);transform:translateY(-2px)}
+#page-app .appt-kpi::after{top:auto;left:auto;right:22px;bottom:0;width:100px;height:72px;border-radius:0;opacity:1;background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)) 0 100%/26px 30px no-repeat,linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)) 38px 100%/26px 50px no-repeat,linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)) 76px 100%/24px 72px no-repeat}
+#page-app .appt-kpi .k-ic{display:none}
+#page-app .appt-kpi .k-top{color:#fff;font-size:15px;font-weight:500;text-transform:none;letter-spacing:0;opacity:.95}
+#page-app .appt-kpi .k-val{font-family:'Bricolage Grotesque','Sora',sans-serif;font-size:46px;font-weight:700;letter-spacing:-.035em;color:#fff;margin-top:14px}
+#page-app .appt-kpi .k-sub{color:rgba(255,255,255,.88);font-size:14px;font-weight:500;margin-top:8px}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
