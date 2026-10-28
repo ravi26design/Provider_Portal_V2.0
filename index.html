@@ -8520,6 +8520,19 @@ body{background:#F1F4FA !important}
 #sec-appointments .cal-chip:hover{filter:brightness(.97)}
 #sec-appointments .cal-legend{gap:18px;margin-top:20px;padding-top:16px;border-top:1px solid #EEF2F7;font-size:13px;color:#5B6482}
 #sec-appointments .cal-legend i{width:9px;height:9px;border-radius:50%}
+/* ═══ Card style aligned with rudra-prototype: white, 24px radius, no border, soft warm shadow ═══ */
+#page-app{--rh-card-shadow:0 2px 14px rgba(58,51,48,.07);--rh-card-shadow-hover:0 4px 22px rgba(58,51,48,.10)}
+#page-app .card{background:#fff;border:0;border-radius:24px;padding:24px;box-shadow:var(--rh-card-shadow)}
+#page-app .card:hover{box-shadow:var(--rh-card-shadow);transform:none}
+#page-app .stat-tile,#page-app .appt-kpi{border:0;border-radius:24px;box-shadow:var(--rh-card-shadow)}
+#page-app .stat-tile:hover,#page-app .appt-kpi:hover{box-shadow:var(--rh-card-shadow-hover);transform:translateY(-2px)}
+#page-app .stat-tile:first-child{box-shadow:0 8px 26px rgba(79,134,184,.34)}
+#page-app .survey-list-card,#page-app .qcard{border:0;border-radius:20px;box-shadow:var(--rh-card-shadow)}
+#page-app .survey-list-card:hover{box-shadow:var(--rh-card-shadow-hover);border:0}
+#createScheduleBody .sched-layout,#modalCreateSurvey .sjs-survey-head{border:0;border-radius:24px;box-shadow:0 4px 22px rgba(58,51,48,.09)}
+#modalCreateSurvey .qcard{border:1.5px solid transparent;border-radius:20px;box-shadow:0 2px 14px rgba(58,51,48,.07)}
+#modalCreateSurvey .qcard.sjs-sel{border-color:#6C9FCC;box-shadow:0 0 0 4px rgba(108,159,204,.18),0 4px 22px rgba(58,51,48,.10)}
+#createScheduleBody .sched-foot{border-radius:0 0 24px 24px}
 #page-app{--coral:#E8928A;--gold:#EDB867;--sky:#6C9FCC;--sage:#8FB397;--red:#E8928A}
 #page-app .stat-tile:first-child{border-color:var(--rh-blue)}
 #page-app .rh-dot{background:#E8928A}
